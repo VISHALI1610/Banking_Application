@@ -1,0 +1,31 @@
+-- Admin Table
+CREATE TABLE Admin (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Customer Table
+CREATE TABLE Customer (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    mobile_no VARCHAR(20),
+    email_id VARCHAR(255),
+    account_type VARCHAR(50),
+    balance DOUBLE,
+    dob DATE,
+    id_proof VARCHAR(255),
+    account_no VARCHAR(20) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Transaction Table
+CREATE TABLE Transaction (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_no VARCHAR(20) NOT NULL,
+    transaction_type VARCHAR(50) NOT NULL,
+    amount DOUBLE NOT NULL,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account_no) REFERENCES Customer(account_no)
+);
